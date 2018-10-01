@@ -18,17 +18,15 @@ namespace GarbageServices
         public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "naam/{myname}")]HttpRequest req,string myname, ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
-            return myname != null
-                ? (ActionResult)new OkObjectResult($"Hello, {myname}")
-                : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
+              
             string name = req.Query["name"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
 
-            return name != null
-                ? (ActionResult)new OkObjectResult($"Hello, {name}")
+            return myname != null
+                ? (ActionResult)new OkObjectResult($"Hello, {myname}")
                 : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
         }
     }
