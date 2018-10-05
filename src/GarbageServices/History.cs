@@ -15,7 +15,7 @@ namespace GarbageServices
     public static class History
     {
         [FunctionName("History")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)]HttpRequest req, ILogger log)
+        public static async Task<IActionResult> run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)]HttpRequest req, ILogger log)
         {
             string from = string.Empty;
             string to = string.Empty;
